@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>회원가입</title>
 </head>
+
 <body>
+    <h1>회원가입</h1>
     <form id="form" action="/join" method="POST">
-        아이디: <input id="userId" type="text" name="id">
-        <button type="button" id ="checkId">아이디 중복검사</button>
-        <br/>
-        이름: <input type="text" name="name"><br/>
-        비밀번호: <input type="password" name="pw"><br/>
-        <input type="submit" value="회원가입"><br/>
+        아이디: <input id="userID" type="text" name="id">
+        <button type="button" id="checkId">아이디 중복검사</button>
+        <br />
+        이름: <input type="text" name="name"><br />
+        비밀번호: <input type="password" name="pw"><br />
+        <input type="submit" value="회원가입"><br />
         <a href="/">홈으로</a>
     </form>
 
@@ -21,48 +24,49 @@
         let valid = false;
 
         const checkID = document.getElementById('checkId');
-        const userId = document.getElementById('userId');
+        const userID = document.getElementById('userID');
 
-        userId.addEventListener('change', function() {
-            valid =false;
-        
+        userID.addEventListener('change', function () {
+            valid = false;
         }, false);
+
         checkID.addEventListener('click', (e) => {
-            const id = userId.value;
+            const id = userID.value;
             var xhr = new XMLHttpRequest();
-            xhr.onreadystatechange = function() {
-                if(xhr.readyState == 4 ) {
-                    if(xhr.status === 200) {
-                        const data =  xhr.responseText;
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4) {
+                    if (xhr.status === 200) {
+                        const data = JSON.parse(xhr.responseText);
                         console.log(data.cnt);
-                        if(data.cnt > 0){
+                        if (data.cnt > 0) {
                             alert("중복된 아이디 입니다.");
                             valid = false;
-                        }  else {
+                        } else {
                             alert("사용가능한 아이디입니다.");
                             valid = true;
                         }
-                        alert(data.msg);
+                        // alert(data.msg);
                     } else {
                         console.log("연결 실패");
                     }
                 }
             }
 
-            var url = "/checkId?id=" + userId.value;
+            var url = "/checkID?id=" + userID.value;
             xhr.open("get", url, true); // true 는 비동기를 보낸다
             xhr.send();
         }, false);
 
         const form = document.getElementById('form');
-        form.addEventListener('submit',send,false);
-        
+        form.addEventListener('submit', send, false);
+
         function send(e) {
-            if(!valid) {
-                console.log("전송안함");
+            console.log("전송안함");
+            if (!valid) {
                 e.preventDefault(); // 기본기능 취소 = 폼 전송 안함
             }
         }
     </script>
 </body>
+
 </html>

@@ -1,15 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Member List</title>
     <style>
-        table {width: 100%; border-collapse: collapse;}
-        table th, table td {border: 1px solid #999}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table th,
+        table td {
+            border: 1px solid #999
+        }
     </style>
 </head>
+
 <body>
     <h1>회원목록</h1>
     <table>
@@ -20,11 +29,23 @@
                 <th>비밀번호</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td></td>
-            </tr>
-        </tbody>
+        {{1}}
     </table>
+    <script>
+        // const table = document.getElementById('table');
+
+        // table.addEventListener('load', () => {
+        //     const table = table.value;
+        //     var xhr = new XMLHttpRequest();
+        //     xhr.onreadystatechange = function () {
+        //         var url = "/members?table=" + table.value;
+        //         xhr.open("GET", url, true); // true 는 비동기를 보낸다
+        //         xhr.send();
+        //     }
+        // }, false);
+
+        
+    </script>
 </body>
+
 </html>
